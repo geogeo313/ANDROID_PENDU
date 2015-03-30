@@ -3,4 +3,8 @@
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="New_Game">New_Game</string>
+    <string name="Continue">Continue</string>
+    <string name="Score">Score</string>
+    <string name="title_activity_fullscreen_settings">FullscreenSettings</string>
 </resources>
