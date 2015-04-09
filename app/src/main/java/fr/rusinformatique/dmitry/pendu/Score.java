@@ -4,13 +4,17 @@ import fr.rusinformatique.dmitry.pendu.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
+
 
 
 /**
@@ -115,7 +119,7 @@ public class Score extends Activity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override

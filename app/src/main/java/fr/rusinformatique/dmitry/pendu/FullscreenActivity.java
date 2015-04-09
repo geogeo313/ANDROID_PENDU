@@ -12,7 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
+import android.support.v4.app.NavUtils;
 
 
 /**
@@ -38,7 +38,7 @@ public class FullscreenActivity extends Activity {
      * If set, will toggle the system UI visibility upon interaction. Otherwise,
      * will show the system UI visibility upon interaction.
      */
-    private static final boolean TOGGLE_ON_CLICK = true;
+    private static final boolean TOGGLE_ON_CLICK = false;
 
     /**
      * The flags to pass to {@link SystemUiHider#getInstance}.
@@ -53,9 +53,8 @@ public class FullscreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_fullscreen);
         btnClick();
+        setContentView(R.layout.activity_fullscreen);
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
 
@@ -162,12 +161,12 @@ public class FullscreenActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    Button n_jeu;
+    Button GO;
     Button score;
 
     public void btnClick() {
-        n_jeu = (Button) findViewById(R.id.new_game);
-        n_jeu.setOnClickListener(new OnClickListener() {
+        GO = (Button) findViewById(R.id.new_game);
+        GO.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -187,7 +186,5 @@ public class FullscreenActivity extends Activity {
         });
 
 
-    }
-
-    ;
+    };
 };
