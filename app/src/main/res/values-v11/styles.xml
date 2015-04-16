@@ -1,4 +1,4 @@
-<resources>
+    <resources>
 
     <style name="FullscreenTheme" parent="android:Theme.Holo">
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>

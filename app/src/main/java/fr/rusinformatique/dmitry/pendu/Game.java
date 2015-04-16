@@ -57,6 +57,9 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_game);
+
+        public String listDesMots ["CHAT", "CHIEN","VACHE"];
+
         setupActionBar();
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
@@ -193,4 +196,5 @@ public class Game extends Activity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
 }
