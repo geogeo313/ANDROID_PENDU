@@ -55,8 +55,8 @@ public class NewGame extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        btnClick();
         setContentView(R.layout.activity_new_game);
+        btnClick();
         setupActionBar();
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
@@ -196,7 +196,7 @@ public class NewGame extends Activity {
     Button GO;
 
     public void btnClick() {
-        GO = (Button) findViewById(R.id.new_game);
+        GO = (Button) findViewById(R.id.GO);
         GO.setOnClickListener(new OnClickListener() {
 
             @Override

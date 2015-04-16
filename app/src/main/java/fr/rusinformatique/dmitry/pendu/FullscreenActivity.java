@@ -52,9 +52,10 @@ public class FullscreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        btnClick();
         setContentView(R.layout.activity_fullscreen);
+        btnClick();
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
 
@@ -62,7 +63,7 @@ public class FullscreenActivity extends Activity {
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
         mSystemUiHider.setup();
-        mSystemUiHider
+      /*  mSystemUiHider
                 .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
                     // Cached values.
                     int mControlsHeight;
@@ -98,7 +99,7 @@ public class FullscreenActivity extends Activity {
                             delayedHide(AUTO_HIDE_DELAY_MILLIS);
                         }
                     }
-                });
+                });*/
 
         // Set up the user interaction to manually show or hide the system UI.
         contentView.setOnClickListener(new View.OnClickListener() {
@@ -163,10 +164,12 @@ public class FullscreenActivity extends Activity {
 
     Button GO;
     Button score;
+    Button cont;
 
     public void btnClick() {
-        GO = (Button) findViewById(R.id.new_game);
-        GO.setOnClickListener(new OnClickListener() {
+
+         GO = (Button) findViewById(R.id.new_game);
+         GO.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -185,6 +188,16 @@ public class FullscreenActivity extends Activity {
             };
         });
 
+        cont = (Button) findViewById(R.id.continu);
+        cont.setOnClickListener(new OnClickListener() {
 
-    };
-};
+            @Override
+            public void onClick(View arg0) {
+                Intent cont = new Intent(getApplicationContext(), Game.class);
+                startActivity(cont);
+
+            }
+        });
+
+    }
+}

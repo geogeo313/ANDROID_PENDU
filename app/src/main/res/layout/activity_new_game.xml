@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#0099cc"
+    android:layout_height="match_parent" android:background="#ffffff"
     tools:context="fr.rusinformatique.dmitry.pendu.NewGame">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:text="@string/go"
             android:id="@+id/GO"
-            android:layout_below="@+id/continu"
             android:layout_alignLeft="@+id/continu"
             android:layout_alignStart="@+id/continu"
             android:layout_gravity="center" />

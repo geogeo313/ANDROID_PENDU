@@ -58,7 +58,7 @@ public class Game extends Activity {
 
         setContentView(R.layout.activity_game);
 
-        public String listDesMots ["CHAT", "CHIEN","VACHE"];
+      //  String listDesMots ["CHAT", "CHIEN","VACHE"];
 
         setupActionBar();
 
@@ -69,7 +69,7 @@ public class Game extends Activity {
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
         mSystemUiHider.setup();
-        mSystemUiHider
+       /* mSystemUiHider
                 .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
                     // Cached values.
                     int mControlsHeight;
@@ -105,7 +105,7 @@ public class Game extends Activity {
                             delayedHide(AUTO_HIDE_DELAY_MILLIS);
                         }
                     }
-                });
+                }); */
 
         // Set up the user interaction to manually show or hide the system UI.
         contentView.setOnClickListener(new View.OnClickListener() {
