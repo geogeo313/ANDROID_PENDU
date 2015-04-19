@@ -1,200 +1,232 @@
 package fr.rusinformatique.dmitry.pendu;
 
-import fr.rusinformatique.dmitry.pendu.util.SystemUiHider;
+import java.util.Random;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.support.v4.app.NavUtils;
+import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
-
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see SystemUiHider
- */
 public class Game extends Activity {
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
 
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-    /**
-     * If set, will toggle the system UI visibility upon interaction. Otherwise,
-     * will show the system UI visibility upon interaction.
-     */
-    private static final boolean TOGGLE_ON_CLICK = true;
-
-    /**
-     * The flags to pass to {@link SystemUiHider#getInstance}.
-     */
-    private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
-
-    /**
-     * The instance of the {@link SystemUiHider} for this activity.
-     */
-    private SystemUiHider mSystemUiHider;
+    //the words
+    private String[] words;
+    //random for word selection
+    private Random rand;
+    //store the current word
+    private String currWord;
+    //the layout holding the answer
+    private LinearLayout wordLayout;
+    //text views for each letter in the answer
+    private TextView[] charViews;
+    //letter button grid
+    private GridView letters;
+    //letter button adapter
+    private LetterAdapter ltrAdapt;
+    //body part images
+    private ImageView[] bodyParts;
+    //total parts
+    private int numParts=6;
+    //current part
+    private int currPart;
+    //num chars in word
+    private int numChars;
+    //num correct so far
+    private int numCorr;
+    //help
+    private AlertDialog helpAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_game);
 
-      //  String listDesMots ["CHAT", "CHIEN","VACHE"];
+        //read answer words in
+        Resources res = getResources();
+        words = res.getStringArray(R.array.words);
 
-        setupActionBar();
+        //initialize random
+        rand = new Random();
+        //initialize word
+        currWord="";
 
-        final View controlsView = findViewById(R.id.fullscreen_content_controls);
-        final View contentView = findViewById(R.id.fullscreen_content);
+        //get answer area
+        wordLayout = (LinearLayout)findViewById(R.id.word);
 
-        // Set up an instance of SystemUiHider to control the system UI for
-        // this activity.
-        mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
-        mSystemUiHider.setup();
-       /* mSystemUiHider
-                .setOnVisibilityChangeListener(new SystemUiHider.OnVisibilityChangeListener() {
-                    // Cached values.
-                    int mControlsHeight;
-                    int mShortAnimTime;
+        //get letter button grid
+        letters = (GridView)findViewById(R.id.letters);
 
-                    @Override
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-                    public void onVisibilityChange(boolean visible) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                            // If the ViewPropertyAnimator API is available
-                            // (Honeycomb MR2 and later), use it to animate the
-                            // in-layout UI controls at the bottom of the
-                            // screen.
-                            if (mControlsHeight == 0) {
-                                mControlsHeight = controlsView.getHeight();
-                            }
-                            if (mShortAnimTime == 0) {
-                                mShortAnimTime = getResources().getInteger(
-                                        android.R.integer.config_shortAnimTime);
-                            }
-                            controlsView.animate()
-                                    .translationY(visible ? 0 : mControlsHeight)
-                                    .setDuration(mShortAnimTime);
-                        } else {
-                            // If the ViewPropertyAnimator APIs aren't
-                            // available, simply show or hide the in-layout UI
-                            // controls.
-                            controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
-                        }
+        //get body part images
+        bodyParts = new ImageView[numParts];
+        bodyParts[0] = (ImageView)findViewById(R.id.pendu0);
+        bodyParts[1] = (ImageView)findViewById(R.id.pendu1);
+        bodyParts[2] = (ImageView)findViewById(R.id.pendu2);
+        bodyParts[3] = (ImageView)findViewById(R.id.pendu3);
+        bodyParts[4] = (ImageView)findViewById(R.id.pendu4);
+        bodyParts[6] = (ImageView)findViewById(R.id.pendu5);
+        bodyParts[7] = (ImageView)findViewById(R.id.pendu6);
+        bodyParts[8] = (ImageView)findViewById(R.id.pendu7);
+        bodyParts[9] = (ImageView)findViewById(R.id.pendu8);
+        bodyParts[10] = (ImageView)findViewById(R.id.pendu9);
+        bodyParts[11] = (ImageView)findViewById(R.id.pendu10);
 
-                        if (visible && AUTO_HIDE) {
-                            // Schedule a hide().
-                            delayedHide(AUTO_HIDE_DELAY_MILLIS);
-                        }
-                    }
-                }); */
+        //set home as up
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Set up the user interaction to manually show or hide the system UI.
-        contentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (TOGGLE_ON_CLICK) {
-                    mSystemUiHider.toggle();
-                } else {
-                    mSystemUiHider.show();
-                }
+        //start gameplay
+        playGame();
+
+    }
+
+
+
+    //play a new game
+    private void playGame(){
+
+        //choose a word
+        String newWord = words[rand.nextInt(words.length)];
+        //make sure not same word as last time
+        while(newWord.equals(currWord)) newWord = words[rand.nextInt(words.length)];
+        //update current word
+        currWord = newWord;
+
+        //create new array for character text views
+        charViews = new TextView[currWord.length()];
+
+        //remove any existing letters
+        wordLayout.removeAllViews();
+
+        //loop through characters
+        for(int c=0; c<currWord.length(); c++){
+            charViews[c] = new TextView(this);
+            //set the current letter
+            charViews[c].setText(""+currWord.charAt(c));
+            //set layout
+            charViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT));
+            charViews[c].setGravity(Gravity.CENTER);
+            charViews[c].setTextColor(Color.WHITE);
+            charViews[c].setBackgroundResource(R.drawable.caractere_bg);
+            //add to display
+            wordLayout.addView(charViews[c]);
+        }
+
+        //reset adapter
+        ltrAdapt=new LetterAdapter(this);
+        letters.setAdapter(ltrAdapt);
+
+        //start part at zero
+        currPart=0;
+        //set word length and correct choices
+        numChars=currWord.length();
+        numCorr=0;
+
+        //hide all parts
+        for(int p=0; p<numParts; p++){
+            bodyParts[p].setVisibility(View.INVISIBLE);
+        }
+    }
+
+    //letter pressed method
+    public void letterPressed(View view){
+        //find out which letter was pressed
+        String ltr=((TextView)view).getText().toString();
+        char letterChar = ltr.charAt(0);
+        //disable view
+        view.setEnabled(false);
+        view.setBackgroundResource(R.drawable.caractere_down);
+        //check if correct
+        boolean correct=false;
+        for(int k=0; k<currWord.length(); k++){
+            if(currWord.charAt(k)==letterChar){
+                correct=true;
+                numCorr++;
+                charViews[k].setTextColor(Color.BLACK);
             }
-        });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-        delayedHide(100);
-    }
-
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            getActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. Use NavUtils to allow users
-            // to navigate up one level in the application structure. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-            // TODO: If Settings has multiple levels, Up should navigate up
-            // that hierarchy.
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+        //check in case won
+        if(correct){
+            if(numCorr==numChars){
+                //disable all buttons
+                disableBtns();
+                //let user know they have won, ask if they want to play again
+                AlertDialog.Builder winBuild = new AlertDialog.Builder(this);
+                winBuild.setTitle("YAY");
+                winBuild.setMessage("You win!\n\nThe answer was:\n\n"+currWord);
+                winBuild.setPositiveButton("Play Again",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Game.this.playGame();
+                            }});
+                winBuild.setNegativeButton("Exit",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Game.this.finish();
+                            }});
+                winBuild.show();
             }
-            return false;
         }
-    };
-
-    Handler mHideHandler = new Handler();
-    Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mSystemUiHider.hide();
+        //check if user still has guesses
+        else if(currPart<numParts){
+            //show next part
+            bodyParts[currPart].setVisibility(View.VISIBLE);
+            currPart++;
         }
-    };
+        else{
+            //user has lost
+            disableBtns();
+            //let the user know they lost, ask if they want to play again
+            AlertDialog.Builder loseBuild = new AlertDialog.Builder(this);
+            loseBuild.setTitle("OOPS");
+            loseBuild.setMessage("You lose!\n\nThe answer was:\n\n"+currWord);
+            loseBuild.setPositiveButton("Play Again",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Game.this.playGame();
+                        }});
+            loseBuild.setNegativeButton("Exit",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Game.this.finish();
+                        }});
+            loseBuild.show();
+        }
+    }
 
-    /**
-     * Schedules a call to hide() in [delay] milliseconds, canceling any
-     * previously scheduled calls.
-     */
-    private void delayedHide(int delayMillis) {
-        mHideHandler.removeCallbacks(mHideRunnable);
-        mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    //disable letter buttons
+    public void disableBtns(){
+        int numLetters = letters.getChildCount();
+        for(int l=0; l<numLetters; l++){
+            letters.getChildAt(l).setEnabled(false);
+        }
+    }
+
+    //show help information
+    public void showHelp(){
+        AlertDialog.Builder helpBuild = new AlertDialog.Builder(this);
+        helpBuild.setTitle("Help");
+        helpBuild.setMessage("Guess the word by selecting the letters.\n\n"
+                + "You only have 6 wrong selections then it's game over!");
+        helpBuild.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        helpAlert.dismiss();
+                    }});
+        helpAlert = helpBuild.create();
+        helpBuild.show();
     }
 
 }
