@@ -17,96 +17,13 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFFFF"
-        android:layout_gravity="center">
+        android:layout_gravity="center|top">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/pendu0"
-            android:src="@drawable/pendu0"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu1"
+            android:id="@+id/pendu"
             android:src="@drawable/pendu1"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu2"
-            android:src="@drawable/pendu2"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu3"
-            android:src="@drawable/pendu3"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu4"
-            android:src="@drawable/pendu4"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu5"
-            android:src="@drawable/pendu5"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp"
-            android:focusableInTouchMode="true" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu6"
-            android:src="@drawable/pendu6"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu7"
-            android:src="@drawable/pendu7"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu8"
-            android:src="@drawable/pendu8"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu9"
-            android:src="@drawable/pendu9"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/pendu10"
-            android:src="@drawable/pendu10"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="277dp" />
@@ -121,37 +38,11 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/word"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFFFF"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="10dp" >
-    </LinearLayout>
-
-
-
-    <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:paddingBottom="50dp">
-
-        <GridView
-            android:id="@+id/letters"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:background="#FF000000"
-            android:horizontalSpacing="5dp"
-            android:numColumns="7"
-            android:padding="5dp"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="5dp" />
 
         <LinearLayout
             android:orientation="horizontal"
