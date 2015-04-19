@@ -306,65 +306,83 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu0" />
+            android:src="@drawable/pendu0"
+            android:id="@+id/imageView"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu1" />
+            android:src="@drawable/pendu1"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu2" />
+            android:src="@drawable/pendu2"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu3" />
+            android:src="@drawable/pendu3"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu4" />
+            android:src="@drawable/pendu4"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu5" />
+            android:src="@drawable/pendu5"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu6" />
+            android:src="@drawable/pendu6"
+            android:paddingTop="30dp" />
+
         <ImageView
             android:id="@+id/pendu7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu7" />
+            android:src="@drawable/pendu7"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu8" />
+            android:src="@drawable/pendu8"
+            android:paddingTop="30dp" />
+
         <ImageView
             android:id="@+id/pendu9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu9" />
+            android:src="@drawable/pendu9"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignStart="@+id/imageView"
+            android:paddingTop="30dp" />
 
         <ImageView
             android:id="@+id/pendu10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pendu10" />
+            android:src="@drawable/pendu10"
+            android:paddingTop="30dp" />
+
     </RelativeLayout>
 
     <!-- word spaces -->
@@ -372,7 +390,7 @@
     <LinearLayout
         android:id="@+id/word"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="165dp"
         android:layout_marginBottom="5dp"
         android:background="#FFFFFFFF"
         android:gravity="center"
@@ -384,7 +402,7 @@
 
     <GridView
         android:id="@+id/letters"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"

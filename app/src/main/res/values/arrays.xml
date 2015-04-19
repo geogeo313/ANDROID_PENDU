@@ -2,16 +2,17 @@
 <resources>
 
 	<string-array name="words">
-		<item>CHARGER</item>
-		<item>COMPUTER</item>
-		<item>TABLET</item>
-		<item>SYSTEM</item>
+		<item>CHARGEUR</item>
+		<item>ORDINATEUR</item>
+		<item>TABLETTE</item>
+		<item>SYSTEME</item>
 		<item>APPLICATION</item>
 		<item>INTERNET</item>
 		<item>STYLUS</item>
-		<item>ANDROID</item>
-		<item>KEYBOARD</item>
-		<item>SMARTPHONE</item>
+		<item>APPLE</item>
+		<item>CLAIE</item>
+		<item>SOURIS</item>
+        <item>SMARTPHONE</item>
 	</string-array>
 
 </resources>

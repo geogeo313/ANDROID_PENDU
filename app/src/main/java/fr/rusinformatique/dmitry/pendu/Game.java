@@ -20,21 +20,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/**
- * This is demo code to accompany the Mobiletuts+ tutorial:
- * - Android SDK: Create a Hangman Game
- *
- * Sue Smith - January 2014
- */
 
 public class Game extends Activity {
 
-    //the words
-    private String[] words;
+    //the mots
+    private String[] mots;
     //random for word selection
     private Random rand;
     //store the current word
-    private String currWord;
+    private String motenCours;
     //the layout holding the answer
     private LinearLayout wordLayout;
     //text views for each letter in the answer
@@ -44,11 +38,11 @@ public class Game extends Activity {
     //letter button adapter
     private LetterAdapter ltrAdapt;
     //body part images
-    private ImageView[] bodyParts;
+    private ImageView[] corpPendu;
     //total parts
-    private int numParts=9;
+    private int nbrPartie=10;
     //current part
-    private int currPart;
+    private int partAct;
     //num chars in word
     private int numChars;
     //num correct so far
@@ -61,14 +55,14 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        //read answer words in
+        //read answer mots in
         Resources res = getResources();
-        words = res.getStringArray(R.array.words);
+        mots = res.getStringArray(R.array.words);
 
         //initialize random
         rand = new Random();
         //initialize word
-        currWord="";
+        motenCours ="";
 
         //get answer area
         wordLayout = (LinearLayout)findViewById(R.id.word);
@@ -77,17 +71,17 @@ public class Game extends Activity {
         letters = (GridView)findViewById(R.id.letters);
 
         //get body part images
-        bodyParts = new ImageView[numParts];
-        bodyParts[0] = (ImageView)findViewById(R.id.pendu1);
-        bodyParts[1] = (ImageView)findViewById(R.id.pendu2);
-        bodyParts[2] = (ImageView)findViewById(R.id.pendu3);
-        bodyParts[3] = (ImageView)findViewById(R.id.pendu4);
-        bodyParts[4] = (ImageView)findViewById(R.id.pendu5);
-        bodyParts[5] = (ImageView)findViewById(R.id.pendu6);
-        bodyParts[6] = (ImageView)findViewById(R.id.pendu7);
-        bodyParts[7] = (ImageView)findViewById(R.id.pendu8);
-        bodyParts[8] = (ImageView)findViewById(R.id.pendu9);
-        bodyParts[9] = (ImageView)findViewById(R.id.pendu10);
+        corpPendu = new ImageView[nbrPartie];
+        corpPendu[0] = (ImageView)findViewById(R.id.pendu1);
+        corpPendu[1] = (ImageView)findViewById(R.id.pendu2);
+        corpPendu[2] = (ImageView)findViewById(R.id.pendu3);
+        corpPendu[3] = (ImageView)findViewById(R.id.pendu4);
+        corpPendu[4] = (ImageView)findViewById(R.id.pendu5);
+        corpPendu[5] = (ImageView)findViewById(R.id.pendu6);
+        corpPendu[6] = (ImageView)findViewById(R.id.pendu7);
+        corpPendu[7] = (ImageView)findViewById(R.id.pendu8);
+        corpPendu[8] = (ImageView)findViewById(R.id.pendu9);
+        corpPendu[9] = (ImageView)findViewById(R.id.pendu10);
 
         //set home as up
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -121,23 +115,23 @@ public class Game extends Activity {
     private void playGame(){
 
         //choose a word
-        String newWord = words[rand.nextInt(words.length)];
+        String newWord = mots[rand.nextInt(mots.length)];
         //make sure not same word as last time
-        while(newWord.equals(currWord)) newWord = words[rand.nextInt(words.length)];
+        while(newWord.equals(motenCours)) newWord = mots[rand.nextInt(mots.length)];
         //update current word
-        currWord = newWord;
+        motenCours = newWord;
 
         //create new array for character text views
-        charViews = new TextView[currWord.length()];
+        charViews = new TextView[motenCours.length()];
 
         //remove any existing letters
         wordLayout.removeAllViews();
 
         //loop through characters
-        for(int c=0; c<currWord.length(); c++){
+        for(int c=0; c< motenCours.length(); c++){
             charViews[c] = new TextView(this);
             //set the current letter
-            charViews[c].setText(""+currWord.charAt(c));
+            charViews[c].setText(""+ motenCours.charAt(c));
             //set layout
             charViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
                     LayoutParams.WRAP_CONTENT));
@@ -153,14 +147,14 @@ public class Game extends Activity {
         letters.setAdapter(ltrAdapt);
 
         //start part at zero
-        currPart=0;
+        partAct =0;
         //set word length and correct choices
-        numChars=currWord.length();
+        numChars= motenCours.length();
         numCorr=0;
 
         //hide all parts
-        for(int p=0; p<numParts; p++){
-            bodyParts[p].setVisibility(View.INVISIBLE);
+        for(int p=0; p< nbrPartie; p++){
+            corpPendu[p].setVisibility(View.INVISIBLE);
         }
     }
 
@@ -174,8 +168,8 @@ public class Game extends Activity {
         view.setBackgroundResource(R.drawable.letter_down);
         //check if correct
         boolean correct=false;
-        for(int k=0; k<currWord.length(); k++){
-            if(currWord.charAt(k)==letterChar){
+        for(int k=0; k< motenCours.length(); k++){
+            if(motenCours.charAt(k)==letterChar){
                 correct=true;
                 numCorr++;
                 charViews[k].setTextColor(Color.BLACK);
@@ -188,14 +182,14 @@ public class Game extends Activity {
                 disableBtns();
                 //let user know they have won, ask if they want to play again
                 AlertDialog.Builder winBuild = new AlertDialog.Builder(this);
-                winBuild.setTitle("YAY");
-                winBuild.setMessage("You win!\n\nThe answer was:\n\n"+currWord);
-                winBuild.setPositiveButton("Play Again",
+                winBuild.setTitle("OH!");
+                winBuild.setMessage("T'as gagné\n\nLa reponse est bien:\n\n"+ motenCours);
+                winBuild.setPositiveButton("Jouer encore",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Game.this.playGame();
                             }});
-                winBuild.setNegativeButton("Exit",
+                winBuild.setNegativeButton("Quitter",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Game.this.finish();
@@ -204,24 +198,24 @@ public class Game extends Activity {
             }
         }
         //check if user still has guesses
-        else if(currPart<numParts){
+        else if(partAct < nbrPartie){
             //show next part
-            bodyParts[currPart].setVisibility(View.VISIBLE);
-            currPart++;
+            corpPendu[partAct].setVisibility(View.VISIBLE);
+            partAct++;
         }
         else{
             //user has lost
             disableBtns();
             //let the user know they lost, ask if they want to play again
             AlertDialog.Builder loseBuild = new AlertDialog.Builder(this);
-            loseBuild.setTitle("OOPS");
-            loseBuild.setMessage("You lose!\n\nThe answer was:\n\n"+currWord);
-            loseBuild.setPositiveButton("Play Again",
+            loseBuild.setTitle("AIE");
+            loseBuild.setMessage("T'as perdu!\n\nLa reponse:\n\n"+ motenCours);
+            loseBuild.setPositiveButton("Jouer encore",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Game.this.playGame();
                         }});
-            loseBuild.setNegativeButton("Exit",
+            loseBuild.setNegativeButton("Quitter",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Game.this.finish();
@@ -241,9 +235,9 @@ public class Game extends Activity {
     //show help information
     public void showHelp(){
         AlertDialog.Builder helpBuild = new AlertDialog.Builder(this);
-        helpBuild.setTitle("Help");
-        helpBuild.setMessage("Guess the word by selecting the letters.\n\n"
-                + "You only have 6 wrong selections then it's game over!");
+        helpBuild.setTitle("Aide");
+        helpBuild.setMessage("Trouves le mot en appuyant sur les lettres.\n\n"
+                + "Tu as 9 essaies (normalement)");
         helpBuild.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
