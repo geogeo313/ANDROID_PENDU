@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 15
+    compileSdkVersion 21
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "fr.rusinformatique.dmitry.pendu"
         minSdkVersion 15
-        targetSdkVersion 15
+        targetSdkVersion 21
         versionCode 1
         versionName "v0.01"
     }
