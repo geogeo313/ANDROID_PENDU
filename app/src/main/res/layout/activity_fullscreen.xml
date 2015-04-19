@@ -31,10 +31,9 @@
             android:layout_height="wrap_content"
             android:text="@string/New_Game"
             android:id="@+id/new_game"
-            android:layout_marginTop="134dp"
+            android:layout_marginTop="140dp"
             android:layout_below="@+id/logo"
-            android:layout_toLeftOf="@+id/comment"
-            android:layout_toStartOf="@+id/comment" />
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="300dp"
@@ -62,36 +61,6 @@
             android:contentDescription="logo"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/settings"
-            android:layout_marginBottom="85dp"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="Settings"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/score"
-            android:layout_toStartOf="@+id/score" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/authors"
-            android:contentDescription="authors"
-            android:src="@mipmap/ic_launcher"
-            android:layout_alignTop="@+id/settings"
-            android:layout_alignLeft="@+id/logo"
-            android:layout_alignStart="@+id/logo" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/comment"
-            android:src="@mipmap/ic_launcher"
-            android:layout_alignTop="@+id/authors"
-            android:layout_toRightOf="@+id/score"
-            android:layout_toEndOf="@+id/score" />
 
     </RelativeLayout>
 

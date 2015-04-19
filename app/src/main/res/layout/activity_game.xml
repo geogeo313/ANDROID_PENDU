@@ -1,32 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#ffff"
     tools:context="fr.rusinformatique.dmitry.pendu.Game">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
+     The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
+         TextureView, etc.
     <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
         android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
         android:textStyle="bold" android:textSize="50sp" android:gravity="center"
         android:text="@string/dummy_content" />
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
+     This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows.
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="193dp"
         android:layout_gravity="center|top">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/pendu"
             android:src="@drawable/pendu1"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="277dp" />
+            android:layout_gravity="center_horizontal|top"
+            android:layout_alignRight="@+id/textView"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +35,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/textView"
-            android:gravity="center|bottom" />
+            android:gravity="center|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -282,3 +286,113 @@
     </LinearLayout>
 
 </FrameLayout>
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FF000000"
+    android:orientation="vertical" >
+
+    <!-- gallows area -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        android:gravity="center"
+        android:paddingTop="15dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu0" />
+
+        <ImageView
+            android:id="@+id/pendu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu1" />
+
+        <ImageView
+            android:id="@+id/pendu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu2" />
+
+        <ImageView
+            android:id="@+id/pendu3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu3" />
+
+        <ImageView
+            android:id="@+id/pendu4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu4" />
+
+        <ImageView
+            android:id="@+id/pendu5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu5" />
+
+        <ImageView
+            android:id="@+id/pendu6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu6" />
+        <ImageView
+            android:id="@+id/pendu7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu7" />
+
+        <ImageView
+            android:id="@+id/pendu8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu8" />
+        <ImageView
+            android:id="@+id/pendu9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu9" />
+
+        <ImageView
+            android:id="@+id/pendu10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pendu10" />
+    </RelativeLayout>
+
+    <!-- word spaces -->
+
+    <LinearLayout
+        android:id="@+id/word"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFFFF"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+    </LinearLayout>
+
+    <!-- letters -->
+
+    <GridView
+        android:id="@+id/letters"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="#FF000000"
+        android:horizontalSpacing="5dp"
+        android:numColumns="7"
+        android:padding="5dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp" />
+
+</LinearLayout>
