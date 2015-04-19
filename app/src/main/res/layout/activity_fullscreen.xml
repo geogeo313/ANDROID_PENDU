@@ -1,0 +1,98 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#ffffff"
+    tools:context=".FullscreenActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:textColor="#33b5e5"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:text="@string/dummy_content" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/New_Game"
+            android:id="@+id/new_game"
+            android:layout_marginTop="134dp"
+            android:layout_below="@+id/logo"
+            android:layout_toLeftOf="@+id/comment"
+            android:layout_toStartOf="@+id/comment" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Continue"
+            android:id="@+id/continu"
+            android:layout_below="@+id/new_game"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Score"
+            android:id="@+id/score"
+            android:layout_below="@+id/continu"
+            android:layout_alignLeft="@+id/continu"
+            android:layout_alignStart="@+id/continu" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo"
+            android:layout_marginTop="85dp"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="logo"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings"
+            android:layout_marginBottom="85dp"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="Settings"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/score"
+            android:layout_toStartOf="@+id/score" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/authors"
+            android:contentDescription="authors"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignTop="@+id/settings"
+            android:layout_alignLeft="@+id/logo"
+            android:layout_alignStart="@+id/logo" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignTop="@+id/authors"
+            android:layout_toRightOf="@+id/score"
+            android:layout_toEndOf="@+id/score" />
+
+    </RelativeLayout>
+
+</FrameLayout>
